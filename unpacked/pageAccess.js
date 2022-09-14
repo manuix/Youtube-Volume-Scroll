@@ -39,9 +39,11 @@ setInterval(() => window._lact = Date.now(), 9e5);
     $('#main-panel') :
     $('.html5-video-player')
 ).onwheel = event => {
-    event.preventDefault();
-    // Event.deltaY < 0 means wheel-up
-    changeVolume(event.deltaY < 0, event.shiftKey ? 2 : 1);
+    if (event.shiftKey) {
+        event.preventDefault();
+        // Event.deltaY < 0 means wheel-up
+        changeVolume(event.deltaY < 0, 1);
+    }
 };
 
 function changeVolume(toIncrease, modifier) {
